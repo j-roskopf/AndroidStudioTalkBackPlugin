@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>com.joer.TalkBackPlugin</id>
+    <name>Android TalkBack Enabler</name>
+    <vendor email="joseph.thomas.roskopf@gmail.com.com" url="http://joetr.com/">joetr.com</vendor>
+
+    <description>Enables Android TalkBack from within the Tools menu. Assumes that you already have TalkBack installed on your emulator / device.</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action
+                id="TalkBack.On.ToolsMenu"
+                class="com.joer.actions.TalkBackOnAction"
+                text="Turn On Android TalkBack"
+                description="Turns on android talk back">
+            <add-to-group group-id="ToolsMenu"/>
+        </action>
+        <action
+                id="TalkBack.Off.ToolsMenu"
+                class="com.joer.actions.TalkBackOffAction"
+                text="Turn Off Android TalkBack"
+                description="Turns off android talk back">
+            <add-to-group group-id="ToolsMenu"/>
+        </action>
+    </actions>
+</idea-plugin>
