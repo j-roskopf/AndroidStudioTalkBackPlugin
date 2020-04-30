@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.joer.TalkBackPlugin</id>
     <name>Android TalkBack Enabler</name>
-    <vendor email="joseph.thomas.roskopf@gmail.com.com" url="http://joetr.com/">joetr.com</vendor>
+    <vendor email="joseph.thomas.roskopf@gmail.com.com" url="http://joetr.com/">http://joetr.com</vendor>
 
     <description>Enables Android TalkBack from within the Tools menu. Assumes that you already have TalkBack installed on your emulator / device.</description>
 
