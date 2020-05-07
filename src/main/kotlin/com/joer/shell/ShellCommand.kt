@@ -22,7 +22,7 @@ class ShellCommand {
             handler.addProcessListener(object: ProcessListener {
 
                 override fun processWillTerminate(event: ProcessEvent, willBeDestroyed: Boolean) {
-                    super.processWillTerminate(event, willBeDestroyed)
+                    // no-op
                 }
 
                 override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
