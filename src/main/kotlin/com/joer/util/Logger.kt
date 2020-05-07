@@ -7,28 +7,35 @@ import com.intellij.notification.Notifications
 import java.text.SimpleDateFormat
 import java.util.*
 
-val hhmmddFormat : SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
-fun Date.toHHMMDD() : String = hhmmddFormat.format(this)
+val hhmmddFormat: SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
+fun Date.toHHMMDD(): String = hhmmddFormat.format(this)
 
 object Logger {
     private val debug = false
-    val notificationGroup = NotificationGroup("logger", NotificationDisplayType.NONE, true)
+    private val notificationGroup = NotificationGroup(
+        displayId = "logger",
+        displayType = NotificationDisplayType.NONE,
+        isLogByDefault = true,
+        toolWindowId = null,
+        icon = null
+    )
+
 
     @JvmStatic
-    fun d(clazz: Any, message: String = ""){
-        if(!debug) return
+    fun d(clazz: Any, message: String = "") {
+        if (!debug) return
         output(clazz, message, "debug")
     }
 
     @JvmStatic
-    fun e(clazz: Any, message: String){
+    fun e(clazz: Any, message: String) {
         output(clazz, message, "error")
     }
 
-    private fun output(clazz: Any, message: String, debugType: String){
+    private fun output(clazz: Any, message: String, debugType: String) {
         val output = "[${Date().toHHMMDD()}] (${clazz.javaClass.simpleName}/$debugType) $message"
         if (debug) {
-            val notificationType = when(debugType) {
+            val notificationType = when (debugType) {
                 "debug" -> NotificationType.INFORMATION
                 "error" -> NotificationType.ERROR
                 else -> NotificationType.INFORMATION
