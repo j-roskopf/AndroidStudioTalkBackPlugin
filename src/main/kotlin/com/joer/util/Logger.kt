@@ -1,9 +1,7 @@
 package com.joer.util
 
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
-import com.intellij.notification.NotificationType
-import com.intellij.notification.Notifications
+import com.intellij.notification.*
+import com.intellij.notification.impl.NotificationGroupEP
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -11,7 +9,9 @@ val hhmmddFormat: SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
 fun Date.toHHMMDD(): String = hhmmddFormat.format(this)
 
 object Logger {
-    private val debug = false
+
+    private const val debug = false
+
     private val notificationGroup = NotificationGroup(
         displayId = "logger",
         displayType = NotificationDisplayType.NONE,
