@@ -1,7 +1,6 @@
 package com.joer.util
 
 import com.intellij.notification.*
-import com.intellij.notification.impl.NotificationGroupEP
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,38 +11,28 @@ object Logger {
 
     private const val debug = false
 
-    private val notificationGroup = NotificationGroup(
-        displayId = "logger",
-        displayType = NotificationDisplayType.NONE,
-        isLogByDefault = true,
-        toolWindowId = null,
-        icon = null
-    )
-
-
-    @JvmStatic
-    fun d(clazz: Any, message: String = "") {
-        if (!debug) return
-        output(clazz, message, "debug")
-    }
+    private val notificationGroup = NotificationGroupManager.getInstance()
+        .getNotificationGroup("logger")
 
     @JvmStatic
     fun e(clazz: Any, message: String) {
-        output(clazz, message, "error")
+        output(clazz, message, LogType.ERROR)
     }
 
-    private fun output(clazz: Any, message: String, debugType: String) {
-        val output = "[${Date().toHHMMDD()}] (${clazz.javaClass.simpleName}/$debugType) $message"
+    private fun output(clazz: Any, message: String, logType: LogType) {
+        val output = "[${Date().toHHMMDD()}] (${clazz.javaClass.simpleName}/$logType) $message"
         if (debug) {
-            val notificationType = when (debugType) {
-                "debug" -> NotificationType.INFORMATION
-                "error" -> NotificationType.ERROR
-                else -> NotificationType.INFORMATION
+            val notificationType = when (logType) {
+                LogType.ERROR -> NotificationType.ERROR
             }
             Notifications.Bus.notify(
                 notificationGroup.createNotification(output, notificationType)
             )
+            println(output)
         }
-        println(output)
     }
+}
+
+enum class LogType {
+    ERROR,
 }
