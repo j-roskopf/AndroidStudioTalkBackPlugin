@@ -9,6 +9,8 @@ Enables Android TalkBack from within the Tools menu. Assumes that you already ha
 ![tools](https://github.com/j-roskopf/AndroidStudioTalkBackPlugin/blob/master/images/first.png)
 ![search](https://github.com/j-roskopf/AndroidStudioTalkBackPlugin/blob/master/images/second.png)
 
+Can be installed built and installed locally via `./gradlew build` and installing from within Android Studio
+
 ## Additional Reading
 1. https://plugins.jetbrains.com/docs/intellij/android-studio.html#open-source-plugins-for-android-studio
 2. https://github.com/pbreault/adb-idea
