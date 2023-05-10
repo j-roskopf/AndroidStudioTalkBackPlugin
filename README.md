@@ -1,5 +1,9 @@
 # AndroidStudioTalkBackPlugin
 
+![Build](https://github.com/j-roskopf/IntelliJPluginTemplate/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/https://plugins.jetbrains.com/plugin/14229-android-talkback-enabler.svg)](https://plugins.jetbrains.com/plugin/14229-android-talkback-enabler)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/https://plugins.jetbrains.com/plugin/14229-android-talkback-enabler.svg)](https://plugins.jetbrains.com/plugin/https://plugins.jetbrains.com/plugin/14229-android-talkback-enabler)
+
 Enables Android TalkBack from within the Tools menu. Assumes that you already have TalkBack installed on your emulator / device.
 
 ![tools](https://github.com/j-roskopf/AndroidStudioTalkBackPlugin/blob/master/images/first.png)
