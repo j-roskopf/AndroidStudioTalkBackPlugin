@@ -14,12 +14,12 @@ class ShellCommand {
     fun executeCommand(command: String, callback: Callback? = null) {
         val outContent = StringBuilder()
         val errContent = StringBuilder()
-        val splitCommand: MutableList<String> = if(command.contains(" ")) command.split(" ").toMutableList() else mutableListOf(command)
+        val splitCommand: MutableList<String> = if (command.contains(" ")) command.split(" ").toMutableList() else mutableListOf(command)
         val commandLine = GeneralCommandLine(splitCommand)
         val handler = OSProcessHandler(commandLine)
 
         try {
-            handler.addProcessListener(object: ProcessListener {
+            handler.addProcessListener(object : ProcessListener {
 
                 override fun processWillTerminate(event: ProcessEvent, willBeDestroyed: Boolean) {
                     // no-op
@@ -47,24 +47,22 @@ class ShellCommand {
                 override fun startNotified(event: ProcessEvent) {
                     // no-op
                 }
-
             })
             handler.startNotify()
-        }catch (e: ExecutionException) {
+        } catch (e: ExecutionException) {
             Logger.e(this, outputErrorLog("error", e, outContent, errContent))
-        }catch (e: InterruptedException) {
+        } catch (e: InterruptedException) {
             Logger.e(this, outputErrorLog("timeout", e, outContent, errContent))
-        }catch (e: IllegalThreadStateException){
+        } catch (e: IllegalThreadStateException) {
             Logger.e(this, outputErrorLog("timeout", e, outContent, errContent))
         }
     }
 
-    private fun outputErrorLog(cause: String, exception: Exception, output:StringBuilder, errorOutput: StringBuilder)
-            :String {
+    private fun outputErrorLog(cause: String, exception: Exception, output: StringBuilder, errorOutput: StringBuilder): String {
         val str = "Command $cause: ${exception.message} \n" +
-                "${exception.stackTrace.joinToString("\n")}\n" +
-                " output:$output\n" +
-                " error:$errorOutput"
+            "${exception.stackTrace.joinToString("\n")}\n" +
+            " output:$output\n" +
+            " error:$errorOutput"
         Logger.e(this, str)
         return str
     }

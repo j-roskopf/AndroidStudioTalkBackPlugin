@@ -1,8 +1,10 @@
 package com.joer.util
 
-import com.intellij.notification.*
+import com.intellij.notification.NotificationGroupManager
+import com.intellij.notification.NotificationType
+import com.intellij.notification.Notifications
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 val hhmmddFormat: SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
 fun Date.toHHMMDD(): String = hhmmddFormat.format(this)
