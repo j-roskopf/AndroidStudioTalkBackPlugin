@@ -9,28 +9,31 @@ object ConnectedDevice {
     private val shellCommand = ShellCommand()
 
     fun checkConnectedDevices(callback: ConnectedDeviceCallback) {
-        shellCommand.executeCommand("adb devices", object : Callback {
-            override fun terminatedWithContent(content: String) {
-                val pattern: Pattern = Pattern.compile("\\bdevice\\b", Pattern.CASE_INSENSITIVE)
-                val matcher: Matcher = pattern.matcher(content)
-                var count = 0
-                while (matcher.find()) count++
-                when {
-                    count == 1 -> {
-                        callback.deviceConnected()
-                    }
-                    count > 1 -> {
-                        callback.tooManyDevices()
-                    }
-                    count == 0 -> {
-                        callback.notEnoughDevices()
-                    }
-                    else -> {
-                        callback.generalError()
+        shellCommand.executeCommand(
+            "adb devices",
+            object : Callback {
+                override fun terminatedWithContent(content: String) {
+                    val pattern: Pattern = Pattern.compile("\\bdevice\\b", Pattern.CASE_INSENSITIVE)
+                    val matcher: Matcher = pattern.matcher(content)
+                    var count = 0
+                    while (matcher.find()) count++
+                    when {
+                        count == 1 -> {
+                            callback.deviceConnected()
+                        }
+                        count > 1 -> {
+                            callback.tooManyDevices()
+                        }
+                        count == 0 -> {
+                            callback.notEnoughDevices()
+                        }
+                        else -> {
+                            callback.generalError()
+                        }
                     }
                 }
             }
-        })
+        )
     }
 }
 
